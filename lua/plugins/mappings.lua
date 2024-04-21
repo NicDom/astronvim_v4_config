@@ -1,4 +1,15 @@
 -- User specific keybindings
+local function is_filetype_open(filetype)
+  local buffers = vim.api.nvim_list_bufs()
+
+  for _, buf in ipairs(buffers) do
+    local buf_filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+
+    if buf_filetype == filetype then return true end
+  end
+
+  return false
+end
 
 return {
   {
@@ -10,6 +21,39 @@ return {
         n = {
           -- second key is the lefthand side of the map
           -- mappings seen under group name "Buffer"
+          ["<Leader>ö"] = { desc = "Neorg" },
+          ["<Leader>öö"] = {
+            function()
+              if is_filetype_open "norg" then
+                vim.cmd "Neorg return"
+              else
+                vim.cmd "Neorg index"
+              end
+            end,
+            desc = "Neorg",
+          },
+          ["<Leader>öf"] = {
+            function() require("neorg.modules.core.integrations.telescope.module").public.find_linkable() end,
+            desc = "Find linkable",
+          },
+          ["<Leader>öt"] = {
+            function()
+              local dirman = require("neorg").modules.get_module "core.dirman"
+              dirman.create_file "todo"
+            end,
+            desc = "Open todo file",
+          },
+          ["<Leader>ön"] = {
+            function()
+              local dirman = require("neorg").modules.get_module "core.dirman"
+              local filename = vim.fn.input "Enter file name: "
+              if filename ~= "" then
+                dirman.create_file(filename)
+                vim.cmd "Neorg inject-metadata"
+              end
+            end,
+            desc = "New Neorg file",
+          },
           ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
           ["<Leader>bD"] = {
             function()
