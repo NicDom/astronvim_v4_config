@@ -34,25 +34,25 @@ return {
           ["<Leader>fp"] = { "<cmd>Telescope projects<CR>", desc = "Find Projects" },
 
           -- Neotest
-          ["<Leader>k"] = { name = "ﭧ Test" },
-          ["<Leader>kr"] = { "<cmd>lua require('neotest').run.run()<cr>", desc = "Run" },
-          ["<Leader>kf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "File" },
-          ["<Leader>kk"] = { "<cmd>lua require('neotest').run.run( { suite = true } )<cr>", desc = "Suite" },
-          ["<Leader>ka"] = { ":wa<cr>:TermExec cmd='pytest -s -vv'<cr>", desc = "All" },
-          ["<Leader>ks"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Summary" },
-          ["<Leader>kw"] = { "<cmd>lua require('neotest').watch.watch()<cr>", desc = "Watch" },
-          ["<Leader>kn"] = {
-            "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>",
-            desc = "Jump Next Fail",
-          },
-          ["<Leader>kp"] = {
-            "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>",
-            desc = "Jump Previous Fail",
-          },
-          ["<Leader>ko"] = {
-            "<cmd>lua require('neotest').output.open( {enter = true, short = false} )<cr>",
-            desc = "Output",
-          },
+          -- ["<Leader>k"] = { name = "ﭧ Test" },
+          -- ["<Leader>kr"] = { "<cmd>lua require('neotest').run.run()<cr>", desc = "Run" },
+          -- ["<Leader>kf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "File" },
+          -- ["<Leader>kk"] = { "<cmd>lua require('neotest').run.run( { suite = true } )<cr>", desc = "Suite" },
+          -- ["<Leader>ka"] = { ":wa<cr>:TermExec cmd='pytest -s -vv'<cr>", desc = "All" },
+          -- ["<Leader>ks"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Summary" },
+          -- ["<Leader>kw"] = { "<cmd>lua require('neotest').watch.watch()<cr>", desc = "Watch" },
+          -- ["<Leader>kn"] = {
+          --   "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>",
+          --   desc = "Jump Next Fail",
+          -- },
+          -- ["<Leader>kp"] = {
+          --   "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>",
+          --   desc = "Jump Previous Fail",
+          -- },
+          -- ["<Leader>ko"] = {
+          --   "<cmd>lua require('neotest').output.open( {enter = true, short = false} )<cr>",
+          --   desc = "Output",
+          -- },
 
           -- Code Runner
           ["<Leader>r"] = { name = " Run" },
