@@ -30,6 +30,7 @@ return {
               local rp = vim.fn.input "Replace with: "
               vim.cmd("%s/" .. word .. "/" .. rp .. "/g")
             end,
+            desc = "Replace word",
           },
           ["<Leader>fp"] = { "<cmd>Telescope projects<CR>", desc = "Find Projects" },
 
