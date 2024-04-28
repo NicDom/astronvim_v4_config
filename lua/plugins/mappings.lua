@@ -1,4 +1,15 @@
 -- User specific keybindings
+local function is_filetype_open(filetype)
+  local buffers = vim.api.nvim_list_bufs()
+
+  for _, buf in ipairs(buffers) do
+    local buf_filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+
+    if buf_filetype == filetype then return true end
+  end
+
+  return false
+end
 
 return {
   {
@@ -10,6 +21,39 @@ return {
         n = {
           -- second key is the lefthand side of the map
           -- mappings seen under group name "Buffer"
+          ["<Leader>ö"] = { desc = "Neorg" },
+          ["<Leader>öö"] = {
+            function()
+              if is_filetype_open "norg" then
+                vim.cmd "Neorg return"
+              else
+                vim.cmd "Neorg index"
+              end
+            end,
+            desc = "Neorg",
+          },
+          ["<Leader>öf"] = {
+            function() require("neorg.modules.core.integrations.telescope.module").public.find_linkable() end,
+            desc = "Find linkable",
+          },
+          ["<Leader>öt"] = {
+            function()
+              local dirman = require("neorg").modules.get_module "core.dirman"
+              dirman.create_file "todo"
+            end,
+            desc = "Open todo file",
+          },
+          ["<Leader>ön"] = {
+            function()
+              local dirman = require("neorg").modules.get_module "core.dirman"
+              local filename = vim.fn.input "Enter file name: "
+              if filename ~= "" then
+                dirman.create_file(filename)
+                vim.cmd "Neorg inject-metadata"
+              end
+            end,
+            desc = "New Neorg file",
+          },
           ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
           ["<Leader>bD"] = {
             function()
@@ -30,29 +74,30 @@ return {
               local rp = vim.fn.input "Replace with: "
               vim.cmd("%s/" .. word .. "/" .. rp .. "/g")
             end,
+            desc = "Replace word",
           },
           ["<Leader>fp"] = { "<cmd>Telescope projects<CR>", desc = "Find Projects" },
 
           -- Neotest
-          ["<Leader>k"] = { name = "ﭧ Test" },
-          ["<Leader>kr"] = { "<cmd>lua require('neotest').run.run()<cr>", desc = "Run" },
-          ["<Leader>kf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "File" },
-          ["<Leader>kk"] = { "<cmd>lua require('neotest').run.run( { suite = true } )<cr>", desc = "Suite" },
-          ["<Leader>ka"] = { ":wa<cr>:TermExec cmd='pytest -s -vv'<cr>", desc = "All" },
-          ["<Leader>ks"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Summary" },
-          ["<Leader>kw"] = { "<cmd>lua require('neotest').watch.watch()<cr>", desc = "Watch" },
-          ["<Leader>kn"] = {
-            "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>",
-            desc = "Jump Next Fail",
-          },
-          ["<Leader>kp"] = {
-            "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>",
-            desc = "Jump Previous Fail",
-          },
-          ["<Leader>ko"] = {
-            "<cmd>lua require('neotest').output.open( {enter = true, short = false} )<cr>",
-            desc = "Output",
-          },
+          -- ["<Leader>k"] = { name = "ﭧ Test" },
+          -- ["<Leader>kr"] = { "<cmd>lua require('neotest').run.run()<cr>", desc = "Run" },
+          -- ["<Leader>kf"] = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "File" },
+          -- ["<Leader>kk"] = { "<cmd>lua require('neotest').run.run( { suite = true } )<cr>", desc = "Suite" },
+          -- ["<Leader>ka"] = { ":wa<cr>:TermExec cmd='pytest -s -vv'<cr>", desc = "All" },
+          -- ["<Leader>ks"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Summary" },
+          -- ["<Leader>kw"] = { "<cmd>lua require('neotest').watch.watch()<cr>", desc = "Watch" },
+          -- ["<Leader>kn"] = {
+          --   "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>",
+          --   desc = "Jump Next Fail",
+          -- },
+          -- ["<Leader>kp"] = {
+          --   "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>",
+          --   desc = "Jump Previous Fail",
+          -- },
+          -- ["<Leader>ko"] = {
+          --   "<cmd>lua require('neotest').output.open( {enter = true, short = false} )<cr>",
+          --   desc = "Output",
+          -- },
 
           -- Code Runner
           ["<Leader>r"] = { name = " Run" },

@@ -10,7 +10,10 @@ return {
   { import = "astrocommunity.pack.lua" },
   -- { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.completion.copilot-lua-cmp" },
+  { import = "astrocommunity.comment.mini-comment" },
+  { import = "astrocommunity.color.transparent-nvim" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
+  -- { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.motion.before-nvim" },
@@ -19,6 +22,7 @@ return {
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.editing-support.comment-box-nvim" },
   { import = "astrocommunity.editing-support.true-zen-nvim" },
+  { import = "astrocommunity.editing-support.wildfire-nvim" },
   -- { import = "astrocommunity.editing-support.ultimate-autopair-nvim" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.yaml" },
@@ -29,12 +33,13 @@ return {
   -- { import = "astrocommunity.pack.java" },
   { import = "astrocommunity.project.project-nvim" },
   -- { import = "astrocommunity.code-runner.sniprun"},
-  { import = "astrocommunity.color.transparent-nvim" },
   -- { import = "astrocommunity.indent.indent-tools-nvim" },
   { import = "astrocommunity.lsp.inc-rename-nvim" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.utility.noice-nvim" },
   -- { import = "astrocommunity.split-and-window.edgy-nvim" },
+  -- { import = "astrocommunity.split-and-window.windows-nvim" },
+  -- { import = "astrocommunity.programming-language-support.rest-nvim" },
 
   --
   -- Exra Settings
