@@ -126,15 +126,9 @@ return {
             function()
               local status = "online"
               local cp_client_ok, cp_client = pcall(require, "copilot.client")
-              if not cp_client_ok then
-                status = "offline"
-                return
-              end
+              if not cp_client_ok then status = "offline" end
               local client = cp_client.get()
-              if not client then
-                status = "offline"
-                return
-              end
+              if not client then status = "offline" end
               if status == "offline" then
                 require("copilot.command").enable()
               else
